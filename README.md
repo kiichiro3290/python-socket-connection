@@ -4,4 +4,4 @@
 - `idf.py -p [PORT] monitor | python ../python_utils/client.py` で実行
 
 ## データを集めたいPC上でサーバーを立ち上げる
-- `server.py` 入っているディレクトリで `python server.py` 
+- `server.py` が入っているディレクトリで `python server.py` 
