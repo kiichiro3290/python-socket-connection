@@ -1,7 +1,7 @@
 # client.py
+import datetime
 import sys
 import socket
-import time
 
 ip_address = 'サーバー側のIPアドレス'
 port = 7010
@@ -15,7 +15,7 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
         line = sys.stdin.readline()
 
         if "CSI_DATA" in line:
-            l = line.rstrip()
+            l = line.rstrip() + ",timestamp"
             # send the data to server
             s.sendall(l.encode())
             break
@@ -24,6 +24,6 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
         line = sys.stdin.readline()
 
         if "CSI_DATA" in line:
-            l = line.rstrip() + "," + str(time.time())
+            l = line.rstrip() + "," + str(datetime.datetime.now().strftime('%Y%m%d%H%M%S'))
             # データを送信する
             s.sendall(l.encode())
