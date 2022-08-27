@@ -9,7 +9,7 @@ buffer_size = 4092
 def main():
     # create the socket
     with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
-        # assing the IP Adress and the Port number
+        # assign the IP Adress and the Port number
         s.bind((ip_address, port))
         # creating socket
         s.listen(5)
@@ -17,18 +17,21 @@ def main():
         # csv で出力すると１つの列にデータが詰まるので良くない
         with open(f'../data/{datetime_str}_link1.txt', 'w') as f:
             # wait for client sending the socket
-            while True:
-                # 要求があれば接続の確立とアドレス、アドレスを代入
-                # establish client/server communication
-                conn, addr = s.accept()
+            try:
                 while True:
-                    # receive the data
-                    data = conn.recv(buffer_size)
-                    # write txt file
-                    f.write(data.decode())
+                    # 要求があれば接続の確立とアドレス、アドレスを代入
+                    # establish client/server communication
+                    conn, addr = s.accept()
+                    while True:
+                        # receive the data
+                        data = conn.recv(buffer_size)
+                        # write txt file
+                        f.write(data.decode())
 
-                    # use for debugging
-                    # print(data.decode())
+                        # use for debugging
+                        # print(data.decode())
+            finally:
+                s.close()
 
 if __name__ == '__main__':
     main()

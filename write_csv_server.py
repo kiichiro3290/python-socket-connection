@@ -19,19 +19,22 @@ def main():
         with open(f'../data/{datetime_str}_link1.csv', 'w') as f:
             writer=csv.writer(f)
             # wait for client sending the socket
-            while True:
-                # 要求があれば接続の確立とアドレス、アドレスを代入
-                # establish client/server communication
-                conn, addr = s.accept()
+            try:
                 while True:
-                    # receive the data
-                    data = conn.recv(buffer_size)
-                    # write csv file
-                    csvData = list(data.decode().split(','))
-                    writer.writerow(csvData)
+                    # 要求があれば接続の確立とアドレス、アドレスを代入
+                    # establish client/server communication
+                    conn, addr = s.accept()
+                    while True:
+                        # receive the data
+                        data = conn.recv(buffer_size)
+                        # write csv file
+                        csvData = list(data.decode().split(','))
+                        writer.writerow(csvData)
 
-                    # use for debugging
-                    print(data.decode())
-
+                        # use for debugging
+                        print(data.decode())
+            finally:
+                s.close()
+                
 if __name__ == '__main__':
     main()
