@@ -1,6 +1,5 @@
 #server.py
 import socket
-import csv
 import datetime
 
 ip_address = 'サーバー側のIPアドレス'
@@ -27,7 +26,7 @@ def main():
                     data = conn.recv(buffer_size)
                     # write txt file
                     f.write(data.decode())
-                    
+
                     # use for debugging
                     # print(data.decode())
 
