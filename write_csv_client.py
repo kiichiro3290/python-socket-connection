@@ -27,7 +27,7 @@ def main():
             if "CSI_DATA" in line:
                 l = line.rstrip() + "," + str(datetime.datetime.now().strftime('%Y%m%d%H%M%S'))
                 # データを送信する
-                s.sendall(l.encode())
+                s.sendall(l.encode('utf-8'))
 
 if __name__ == '__main__':
     main()
