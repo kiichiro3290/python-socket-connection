@@ -3,7 +3,7 @@ import datetime
 import sys
 import socket
 
-ip_address = '172.16.4.147'
+ip_address = 'サーバー側のIPアドレス'
 port = 7010
 buffer_size = 4092
 
