@@ -6,7 +6,7 @@ if __name__ == "__main__":
     This script file demonstrates how to transform raw CSI out from the ESP32 into CSI-amplitude and CSI-phase.
     """
 
-    FILE_NAME = "data/csi1.csv"
+    FILE_NAME = "data/202208041845_link1.csv"
 
     f = open(FILE_NAME)
 
@@ -39,11 +39,9 @@ if __name__ == "__main__":
         for i in range(int(len(csi_raw) / 2)):
             amplitudes.append(sqrt(imaginary[i] ** 2 + real[i] ** 2))
             phases.append(atan2(imaginary[i], real[i]))
+        print(amplitudes)
 
         # print("-------------------")
         # print("csi_amplitude#{}:".format(j), amplitudes)
         # print("csi_phase#{}:    ".format(j), phases)
         # print("-------------------")
-        data.append({'amplitude': amplitudes, 'phase': phases})
-
-print(data)

@@ -1,9 +1,10 @@
 #server.py
 import socket
 import csv
+import datetime
 
-ip_address = 'IP address of the server PC'
-port = 7010
+ip_address = 'サーバー側のIPアドレス'
+port = 7010 # port は 0 ~ 65535 まである．このうち49151までは何かしらのアプリケーションが既に登録されてある．特に，0番～1023番はよく使われるアプリケーション
 buffer_size = 4092
 
 # create the socket
@@ -12,7 +13,9 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
     s.bind((ip_address, port))
     # creating socket
     s.listen(5)
-    with open('data/[filename]].csv', 'w') as f:
+    datetime_str = str(datetime.datetime.now().strftime('%Y%m%d%H%M'))
+    # csv で出力
+    with open(f'../data/{datetime_str}_link1.csv', 'w') as f:
         writer=csv.writer(f)
         # wait for client sending the socket
         while True:
