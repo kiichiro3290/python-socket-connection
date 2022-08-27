@@ -1,8 +1,9 @@
 import sys
 import socket
+import datetime
 from contextlib import closing
 
-def main():
+def main(link_num):
   host = 'サーバー側のIPアドレス'
   port = 50000
   bufsize = 4096
@@ -11,12 +12,24 @@ def main():
   with closing(sock):
     sock.connect((host, port))
     while True:
-      line = sys.stdin.readline().rstrip()
-      if len(line) == 0:
-        break
-      sock.send(line.encode('utf-8'))
-      print(sock.recv(bufsize))
+        line = sys.stdin.readline()
+
+        if "CSI_DATA" in line:
+            l = line.rstrip() + ",timestamp"
+            # send the data to server
+            sock.sendall(l.encode())
+            break
+    # Append subsequent lines with the current timestamp
+    while True:
+        line = sys.stdin.readline()
+
+        if "CSI_DATA" in line:
+            l = line.rstrip() + "," + str(datetime.datetime.now().strftime('%Y%m%d%H%M%S'))
+            # データを送信する
+            sock.sendall(l.encode('utf-8'))
   return
 
 if __name__ == '__main__':
-  main()
+  args = sys.argv
+  link_num = args[1]
+  main(link_num)

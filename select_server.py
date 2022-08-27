@@ -26,7 +26,7 @@ def main():
             readfds.remove(sock)
           else:
             print(msg)
-            sock.send(msg)
+            # sock.send(msg)
   finally:
     for sock in readfds:
       sock.close()
