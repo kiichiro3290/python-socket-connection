@@ -16,7 +16,7 @@ def main():
             line = sys.stdin.readline()
 
             if "CSI_DATA" in line:
-                l = line.rstrip() + ",timestamp"
+                l = line.rstrip() + ",timestamp" + '\n'
                 # send the data to server
                 s.sendall(l.encode())
                 break
@@ -25,7 +25,7 @@ def main():
             line = sys.stdin.readline()
 
             if "CSI_DATA" in line:
-                l = line.rstrip() + "," + str(datetime.datetime.now().strftime('%Y%m%d%H%M%S'))
+                l = line.rstrip() + "," + str(datetime.datetime.now().strftime('%Y%m%d%H%M%S') + '\n')
                 # データを送信する
                 s.sendall(l.encode('utf-8'))
 
