@@ -1,3 +1,4 @@
+from os import link
 import sys
 import socket
 import datetime
@@ -15,7 +16,7 @@ def main(link_num):
         line = sys.stdin.readline()
 
         if "CSI_DATA" in line:
-            l = line.rstrip() + ",timestamp" + "\n"
+            l = line.rstrip() + ",timestamp" + ",link_num" + "\n"
             # send the data to server
             sock.sendall(l.encode())
             break
@@ -26,14 +27,18 @@ def main(link_num):
         line = sys.stdin.readline()
 
         if "CSI_DATA" in line:
-            l = line.rstrip() + "," + str(datetime.datetime.now().strftime('%Y%m%d%H%M%S') + "\n")
+            # タイムスタンプとリンク数を追加
+            l = line.rstrip() + "," + str(datetime.datetime.now().strftime('%Y%m%d%H%M%S') + "," + str(link_num) + "\n")
+            # server にデータを送信
+            msg = l.encode()
+            sock.sendall(msg)
             if current_date != str(datetime.datetime.now().strftime('%Y%m%d%H%M%S')):
-                msg = current_date + ': link' + str(link_num) + ':' + str(packet_num) + 'Hz'
-                sock.sendall(msg.encode('utf-8'))
+                # 毎秒のパケット数を表示
+                # msg = current_date + ': link' + str(link_num) + ':' + str(packet_num) + 'Hz'
+                # sock.sendall(msg.encode('utf-8'))
                 current_date = str(datetime.datetime.now().strftime('%Y%m%d%H%M%S'))
                 packet_num = 0
             packet_num += 1
-  return
 
 if __name__ == '__main__':
   args = sys.argv
