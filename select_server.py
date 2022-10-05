@@ -1,5 +1,6 @@
 import socket
 import select
+import datetime
 
 def main():
   host = 'サーバー側のIPアドレス'
@@ -13,20 +14,24 @@ def main():
     server_sock.bind((host, port))
     server_sock.listen(backlog)
 
-    while True:
-      rready, wready, xready = select.select(readfds, [], [])
-      for sock in rready:
-        if sock is server_sock:
-          conn, address = server_sock.accept()
-          readfds.add(conn)
-        else:
-          msg = sock.recv(bufsize)
-          if len(msg) == 0:
-            sock.close()
-            readfds.remove(sock)
+    datetime_str = str(datetime.datetime.now().strftime('%Y%m%d%H%M'))
+    with open(f'../data/{datetime_str}.txt', 'w') as f:
+      while True:
+        rready, wready, xready = select.select(readfds, [], [])
+        for sock in rready:
+          if sock is server_sock:
+            conn, address = server_sock.accept()
+            readfds.add(conn)
           else:
-            print(msg.decode())
-            # sock.send(msg)
+            msg = sock.recv(bufsize)
+            if len(msg) == 0:
+              sock.close()
+              readfds.remove(sock)
+            else:
+              print(msg.decode())
+              # ファイルを保存する
+              f.write(msg.decode())
+
   finally:
     for sock in readfds:
       sock.close()
