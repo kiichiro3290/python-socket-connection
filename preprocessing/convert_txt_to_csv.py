@@ -1,17 +1,21 @@
 import sys
 import csv
 
-args = sys.argv
+# テキストファイルをCSVファイルに変換するスクリプト
+def main(input_file, output_file):
+    f1 = open(input_file)
+    lines = f1.readlines()
+    with open(output_file, "w") as f:
+        for l in lines:
+            row=list(l.split(','))
+            writer=csv.writer(f)
+            writer.writerow(row)
 
-print(args[0])
-print("inputfile:" + args[1])
-print("outputfie:" + args[2])
+if __name__ == '__main__':
+    args = sys.argv
 
-f1 = open(args[1])
-lines = f1.readlines()
-with open(args[2], "w") as f:
-    for l in lines:
-        row=list(l.split(','))
-        writer=csv.writer(f)
-        writer.writerow(row)
+    print(args[0])
+    print("inputfile:" + args[1])
+    print("outputfie:" + args[2])
 
+    main(args[1], args[2])
