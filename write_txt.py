@@ -39,6 +39,15 @@ def main(link_num, output_file_name):
 # コマンドライン引数として，リンクの番号とデータの出力ファイルを受け取る
 if __name__ == '__main__':
   args = sys.argv
-  link_num = args[1]
-  output_file_name = args[2]
-  main(link_num, output_file_name)
+
+  # リストの長さで引数の個数を判別
+  if len(args) == 1:
+    print('argument error\nexpected::link_num.py input_file output_file')
+  if len(args) == 2:
+    print('argument error\nexpected::link_num.py input_file output_file')
+  if len(args) == 3:
+    link_num = args[1]
+    output_file_name = args[2]
+    main(link_num, output_file_name)
+  if len(args) > 3:
+    print('argument error\nexpected::link_num.py input_file output_file')
