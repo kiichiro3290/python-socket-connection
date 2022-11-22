@@ -48,10 +48,8 @@ if __name__ == '__main__':
   args = sys.argv
 
   # リストの長さで引数の個数を判別
-  if len(args) == 1:
-    print('argument error\nexpected::link_num.py input_file output_file')
   if len(args) == 2:
-    link_num = args[1]
-    main(link_num)
-  if len(args) > 2:
+    # 実行
+    main(args[1])
+  else:
     print('argument error\nexpected::link_num.py input_file output_file')
