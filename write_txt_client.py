@@ -7,6 +7,7 @@ ip_address = 'サーバー側のIPアドレス'
 port = 7010
 buffer_size = 4092
 
+# テキストファイルで出力するクライアント
 def main():
     with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
         # サーバーに接続を要求する

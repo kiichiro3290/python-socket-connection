@@ -7,6 +7,7 @@ ip_address = 'サーバー側のIPアドレス'
 port = 7010 # port は 0 ~ 65535 まである．このうち49151までは何かしらのアプリケーションが既に登録されてある．特に，0番～1023番はよく使われるアプリケーション
 buffer_size = 4092
 
+# CSV出力するサーバ
 def main():
     # create the socket
     with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:

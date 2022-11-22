@@ -43,9 +43,4 @@
 
 ### show_packet_number.py
  - 毎秒のパケット数を表示するだけのスクリプト
- 
-### select_client.py, select_server.py
- - 1台のサーバ PC に対して，複数のクライアント PC からデータを送受信するためのスクリプト
 
-### convert_txt_to_csv.py
- - txt ファイルから csv ファイルへ変換する
