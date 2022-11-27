@@ -28,7 +28,7 @@ def main(link_num):
 
         if "CSI_DATA" in line:
             # タイムスタンプとリンク番号を追加
-            l = line.rstrip() + "," + str(datetime.datetime.now().strftime('%Y%m%d%H%M%S') + "," + str(link_num) + "\n")
+            l = line.rstrip() + "," + str(datetime.datetime.now().strftime('%m%d_%H:%M:%S') + "," + str(link_num) + "\n")
             
             # server にデータを送信
             msg = l.encode('utf-8')

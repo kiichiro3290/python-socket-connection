@@ -14,7 +14,7 @@ def main():
     server_sock.bind((host, port))
     server_sock.listen(backlog)
 
-    datetime_str = str(datetime.datetime.now().strftime('%Y%m%d%H%M'))
+    datetime_str = str(datetime.datetime.now().strftime('%Y_%m%d_%H%M'))
     with open(f'../data/{datetime_str}.txt', 'w') as f:
       while True:
         rready, wready, xready = select.select(readfds, [], [])
