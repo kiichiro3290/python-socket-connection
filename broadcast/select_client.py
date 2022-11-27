@@ -4,7 +4,7 @@ import datetime
 from contextlib import closing
 
 # CSIデータを取得して，タイプスタンプとリンク番号のcolumnを追加して，サーバへデータを通信する
-def main(link_num):
+def select_client(link_num):
   host = 'サーバー側のIPアドレス'
   port = 50000
   bufsize = 4096
@@ -41,6 +41,6 @@ if __name__ == '__main__':
   # リストの長さで引数の個数を判別
   if len(args) == 2:
     # 実行
-    main(args[1])
+    select_client(args[1])
   else:
-    print('argument error\nexpected::link_num.py input_file output_file')
+    print('Usage: python3 select_client.py [LINK_NUM]')

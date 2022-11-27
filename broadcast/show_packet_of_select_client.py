@@ -52,4 +52,4 @@ if __name__ == '__main__':
     # 実行
     main(args[1])
   else:
-    print('argument error\nexpected::link_num.py input_file output_file')
+    print('Usage: python3 show_packet_of_select_client.py [LINK_NUM]')
