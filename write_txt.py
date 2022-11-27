@@ -3,12 +3,12 @@ import datetime
 
 # CSIデータを取得してテキストファイルとしてローカルに保存する
 # CSIデータではなく，packet rate をターミナル上に表示する
-def main(link_num, dist_path):
+def main(link_num, dest_path):
 
   packet_num = 0
   current_date = str(datetime.datetime.now().strftime('%Y_%m%d_%H%M%S'))
 
-  with open(f'./data/{dist_path}_link{link_num}', 'w') as f:
+  with open(f'./data/{dest_path}_link{link_num}', 'w') as f:
     while True:
         line = sys.stdin.readline()
 
@@ -43,7 +43,7 @@ if __name__ == '__main__':
   # リストの長さで引数の個数を判別
   if len(args) == 3:
     link_num = args[1]
-    dist_path = args[2]
-    main(link_num, dist_path)
+    dest_path = args[2]
+    main(link_num, dest_path)
   else:
-    print('Usage: python3 write_txt.py [LINK_NUM] [DIST_PATH]')
+    print('Usage: python3 write_txt.py [LINK_NUM] [DEST_PATH]')
