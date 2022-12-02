@@ -17,7 +17,7 @@ def select_client(link_num):
 
         if "CSI_DATA" in line:
             # メタデータにタイムスタンプとリンク番号を追加する
-            l = line.rstrip() + ",timestamp" + ",link_num" + "\n"
+            l = line.rstrip() + ",timestamp" + ",link_num"
             # send the data to server
             sock.sendall(l.encode())
             break
@@ -28,7 +28,7 @@ def select_client(link_num):
 
         if "CSI_DATA" in line:
             # タイムスタンプとリンク番号を追加
-            l = line.rstrip() + "," + str(datetime.datetime.now().strftime('%m%d_%H:%M:%S') + "," + str(link_num) + "\n")
+            l = line.rstrip() + "," + str(datetime.datetime.now().strftime('%m%d%H%M%S') + "," + str(link_num) + "\n")
             
             # server にデータを送信
             msg = l.encode('utf-8')
