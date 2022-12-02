@@ -13,7 +13,10 @@ def select_client(link_num):
   with closing(sock):
     sock.connect((host, port))
     while True:
-        line = sys.stdin.readline()
+        try:
+          line = sys.stdin.readline()
+        except UnicodeDecodeError:
+          continue
 
         if "CSI_DATA" in line:
             # メタデータにタイムスタンプとリンク番号を追加する
