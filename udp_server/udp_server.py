@@ -16,15 +16,13 @@ def main():
         datetime_str = str(datetime.datetime.now().strftime('%Y%m%d%H%M'))
 
         # csv で出力すると１つの列にデータが詰まるので良くない
-        with open(f'../data/{datetime_str}_link1.txt', 'w') as f:
-            # wait for client sending the socket
-            while True:
-                # receive the data
-                raw_data, cli_addr = s.recvfrom(BUF_SIZE)
-                data = raw_data.decode('utf-8')
-                print(data)
+        while True:
+            # receive the data
+            raw_data, cli_addr = s.recvfrom(BUF_SIZE)
+            data = raw_data.decode('utf-8')
+            print(data)
 
-                # 機械学習パートへ流す
+            # 機械学習パートへ流す
 
 if __name__ == '__main__':
     main()

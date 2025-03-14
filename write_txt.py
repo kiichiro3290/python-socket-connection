@@ -10,12 +10,15 @@ def main(link_num, dest_path):
 
   with open(f'./data/{dest_path}_link{link_num}', 'w') as f:
     while True:
-        line = sys.stdin.readline()
+      try:
+          line = sys.stdin.readline()
+      except UnicodeDecodeError:
+          continue
 
-        if "CSI_DATA" in line:
-            l = line.rstrip() + ",timestamp" + "\n"
-            f.write(l)
-            break
+      if "CSI_DATA" in line:
+        l = line.rstrip() + ",timestamp" + "\n"
+        f.write(l)
+        break
 
     # Append subsequent lines with the current timestamp
     while True:
